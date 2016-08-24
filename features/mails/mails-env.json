@@ -1,0 +1,38 @@
+{
+  "env": [{
+    "type": "confirm",
+    "name": "MAILS",
+    "message": "Enable the emails sender?"
+  }, {
+    "type": "input",
+    "name": "MAILS_HOST",
+    "message": "Host of the SMTP service:",
+    "when": "MAILS=true"
+  }, {
+    "type": "input",
+    "name": "MAILS_PORT",
+    "message": "Port of the SMTP service:",
+    "when": "MAILS=true"
+  }, {
+    "type": "confirm",
+    "name": "MAILS_SECURE",
+    "message": "Does the SMTP service use SSL?",
+    "default": true,
+    "when": "MAILS=true"
+  }, {
+    "type": "input",
+    "name": "MAILS_USER",
+    "message": "User auth of the SMTP service:",
+    "when": "MAILS=true"
+  }, {
+    "type": "input",
+    "name": "MAILS_PASSWORD",
+    "message": "Password auth of the SMTP service:",
+    "when": "MAILS=true"
+  }, {
+    "type": "input",
+    "name": "MAILS_FROM",
+    "message": "Default source email address of the SMTP service:",
+    "when": "MAILS=true"
+  }]
+}
