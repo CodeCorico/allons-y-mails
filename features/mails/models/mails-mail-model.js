@@ -6,7 +6,7 @@ module.exports = function() {
     var extend = require('extend'),
         fs = require('fs'),
         nodemailer = require('nodemailer'),
-        templatesFiles = $allonsy.findInFeaturesSync('html/*-mailtemplate.html'),
+        templatesFiles = $allonsy.findInFeaturesSync('views/html/*-mailtemplate.html'),
         templates = {},
         mailTransporter = nodemailer.createTransport({
           host: process.env.MAILS_HOST,
@@ -27,11 +27,12 @@ module.exports = function() {
       }
     });
 
-    return function MailModel(options) {
+    return function $MailModel(options) {
 
       var _this = this,
           _options = extend(true, {
-            from: process.env.MAILS_FROM || null
+            from: process.env.MAILS_FROM || null,
+            template: 'default'
           }, options || {});
 
       this.from = function(value) {
@@ -93,7 +94,7 @@ module.exports = function() {
       }
 
       this.template = function(value) {
-        _options.template = value && templates[value] ? templates[value] : null;
+        _options.template = value && templates[value] || null;
 
         _createHtml();
 
