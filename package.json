@@ -17,6 +17,7 @@
   "dependencies": {
     "allons-y-express": "^1.0.0",
     "extend": "^3.0.0",
-    "nodemailer": "^2.5.0"
+    "nodemailer": "^2.5.0",
+    "sendmail": "^1.0.0"
   }
 }
