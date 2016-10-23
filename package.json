@@ -15,7 +15,7 @@
     "npm": ">=3.2"
   },
   "dependencies": {
-    "allons-y-express": "^1.0.0",
+    "allons-y-express": "^1.0.1",
     "extend": "^3.0.0",
     "nodemailer": "^2.5.0",
     "sendmail": "^1.0.0"
