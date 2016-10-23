@@ -5,25 +5,27 @@ module.exports = function() {
 
     var extend = require('extend'),
         fs = require('fs'),
-        nodemailer = require('nodemailer'),
-        templatesFiles = $allonsy.findInFeaturesSync('views/html/*-mailtemplate.html'),
-        templates = {},
-        mailTransporter = nodemailer.createTransport({
-          host: process.env.MAILS_HOST,
-          port: process.env.MAILS_PORT,
-          secure: process.env.MAILS_SECURE && process.env.MAILS_SECURE == 'true' || false,
+        _templatesFiles = $allonsy.findInFeaturesSync('views/html/*-mailtemplate.html'),
+        _templates = {},
+        _isSendmail = process.env.MAILS_SENDMAIL && process.env.MAILS_SENDMAIL == 'true' || false,
+        _from = _isSendmail ? process.env.MAILS_SENDMAIL_FROM : process.env.MAILS_SMTP_FROM,
+        _sendmail = _isSendmail ? require('sendmail')() : null,
+        _mailTransporter = _isSendmail ? null : require('nodemailer').createTransport({
+          host: process.env.MAILS_SMTP_HOST,
+          port: process.env.MAILS_SMTP_PORT,
+          secure: process.env.MAILS_SMTP_SECURE && process.env.MAILS_SMTP_SECURE == 'true' || false,
           auth: {
-            user: process.env.MAILS_USER,
-            pass: process.env.MAILS_PASSWORD
+            user: process.env.MAILS_SMTP_USER,
+            pass: process.env.MAILS_SMTP_PASSWORD
           }
         });
 
-    templatesFiles.forEach(function(file) {
+    _templatesFiles.forEach(function(file) {
       var keys = file.split('-'),
           name = keys.length > 1 ? keys[keys.length - 2] : null;
 
       if (name) {
-        templates[name] = fs.readFileSync(file, 'utf-8');
+        _templates[name] = fs.readFileSync(file, 'utf-8');
       }
     });
 
@@ -31,7 +33,7 @@ module.exports = function() {
 
       var _this = this,
           _options = extend(true, {
-            from: process.env.MAILS_FROM || null,
+            from: _from,
             template: 'default'
           }, options || {});
 
@@ -94,7 +96,7 @@ module.exports = function() {
       }
 
       this.template = function(value) {
-        _options.template = value && templates[value] || null;
+        _options.template = value && _templates[value] || null;
 
         _createHtml();
 
@@ -125,7 +127,12 @@ module.exports = function() {
       };
 
       this.send = function(callback) {
-        mailTransporter.sendMail(_options, callback);
+        if (_isSendmail) {
+          _sendmail(_options, callback);
+        }
+        else {
+          _mailTransporter.sendMail(_options, callback);
+        }
 
         return _this;
       };

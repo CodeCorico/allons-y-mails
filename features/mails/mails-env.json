@@ -1,38 +1,52 @@
 {
   "env": [{
     "type": "confirm",
-    "name": "MAILS",
-    "message": "Enable the emails sender?"
+    "name": "MAILS_SENDMAIL",
+    "message": "Enable the 'sendmail' emails sender?"
   }, {
     "type": "input",
-    "name": "MAILS_HOST",
-    "message": "Host of the SMTP service:",
-    "when": "MAILS=true"
-  }, {
-    "type": "input",
-    "name": "MAILS_PORT",
-    "message": "Port of the SMTP service:",
-    "when": "MAILS=true"
+    "name": "MAILS_SENDMAIL_FROM",
+    "message": "Default source email address of the sendmail service:",
+    "when": "MAILS_SENDMAIL=true"
   }, {
     "type": "confirm",
-    "name": "MAILS_SECURE",
+    "name": "MAILS_SMTP",
+    "message": "Enable the 'SMTP' emails sender?"
+  }, {
+    "type": "input",
+    "name": "MAILS_SMTP_HOST",
+    "message": "Host of the SMTP service:",
+    "when": "MAILS_SMTP=true"
+  }, {
+    "type": "input",
+    "name": "MAILS_SMTP_PORT",
+    "message": "Port of the SMTP service:",
+    "when": "MAILS_SMTP=true"
+  }, {
+    "type": "confirm",
+    "name": "MAILS_SMTP_SECURE",
     "message": "Does the SMTP service use SSL?",
     "default": true,
-    "when": "MAILS=true"
+    "when": "MAILS_SMTP=true"
   }, {
     "type": "input",
-    "name": "MAILS_USER",
+    "name": "MAILS_SMTP_USER",
     "message": "User auth of the SMTP service:",
-    "when": "MAILS=true"
+    "when": "MAILS_SMTP=true"
   }, {
     "type": "input",
-    "name": "MAILS_PASSWORD",
+    "name": "MAILS_SMTP_PASSWORD",
     "message": "Password auth of the SMTP service:",
-    "when": "MAILS=true"
+    "when": "MAILS_SMTP=true"
   }, {
     "type": "input",
-    "name": "MAILS_FROM",
+    "name": "MAILS_SMTP_FROM",
     "message": "Default source email address of the SMTP service:",
-    "when": "MAILS=true"
+    "when": "MAILS_SMTP=true"
+  }, {
+    "type": "input",
+    "name": "MAILS_SMTP_FROM",
+    "message": "Default source email address of the SMTP service:",
+    "when": "MAILS_SMTP=true"
   }]
 }
