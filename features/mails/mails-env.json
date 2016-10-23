@@ -2,7 +2,8 @@
   "env": [{
     "type": "confirm",
     "name": "MAILS_SENDMAIL",
-    "message": "Enable the 'sendmail' emails sender?"
+    "message": "Enable the 'sendmail' emails sender?",
+    "default": false
   }, {
     "type": "input",
     "name": "MAILS_SENDMAIL_FROM",
@@ -11,7 +12,8 @@
   }, {
     "type": "confirm",
     "name": "MAILS_SMTP",
-    "message": "Enable the 'SMTP' emails sender?"
+    "message": "Enable the 'SMTP' emails sender?",
+    "default": false
   }, {
     "type": "input",
     "name": "MAILS_SMTP_HOST",
@@ -37,11 +39,6 @@
     "type": "input",
     "name": "MAILS_SMTP_PASSWORD",
     "message": "Password auth of the SMTP service:",
-    "when": "MAILS_SMTP=true"
-  }, {
-    "type": "input",
-    "name": "MAILS_SMTP_FROM",
-    "message": "Default source email address of the SMTP service:",
     "when": "MAILS_SMTP=true"
   }, {
     "type": "input",
