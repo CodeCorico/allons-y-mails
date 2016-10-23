@@ -5,7 +5,7 @@
 [![Issue Stats](http://issuestats.com/github/codecorico/allons-y-mails/badge/pr)](http://issuestats.com/github/codecorico/allons-y)
 [![npm version](https://badge.fury.io/js/allons-y-mails.svg)](https://badge.fury.io/js/allons-y-mails)
 
-Allons-y-mails is an [allons-y](https://github.com/CodeCorico/allons-y) module adds a mail model to send emails.
+Allons-y-mails is an [allons-y](https://github.com/CodeCorico/allons-y) module adds a mail model to send emails with sendmail or SMTP.
 
 ## Wiki
 

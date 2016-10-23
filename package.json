@@ -1,7 +1,7 @@
 {
   "name": "allons-y-mails",
-  "version": "1.0.0",
-  "description": "Mail model to send emails.",
+  "version": "1.0.1",
+  "description": "Mail model to send emails with sendmail or SMTP.",
   "license": "MIT",
   "homepage": "http://allons-y.io",
   "author": "CodeCorico <hello@codecorico.com>",
