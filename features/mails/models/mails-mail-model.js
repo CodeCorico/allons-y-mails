@@ -9,7 +9,9 @@ module.exports = function() {
         _templates = {},
         _isSendmail = process.env.MAILS_SENDMAIL && process.env.MAILS_SENDMAIL == 'true' || false,
         _from = _isSendmail ? process.env.MAILS_SENDMAIL_FROM : process.env.MAILS_SMTP_FROM,
-        _sendmail = _isSendmail ? require('sendmail')() : null,
+        _sendmail = _isSendmail ? require('sendmail')({
+          silent: true
+        }) : null,
         _mailTransporter = _isSendmail ? null : require('nodemailer').createTransport({
           host: process.env.MAILS_SMTP_HOST,
           port: process.env.MAILS_SMTP_PORT,
